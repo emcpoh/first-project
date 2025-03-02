@@ -14,7 +14,7 @@
 - git push origin <ветка>  # Отправить изменения в удалённый репозиторий
 ```
 ## Настройка SSH для работы с GitHub
-- ``` 
+- ```
   ssh-keygen -t rsa -b 4096 -C "your@email.com"  # Создать SSH-ключ
 - ```
   cat ~/.ssh/id_rsa.pub  # Посмотреть публичный ключ
@@ -40,6 +40,20 @@ git log # --oneline
 - Файл переходит в статус staged после выполнения git add.
 - Статус modified означает, что файл был изменён.
 - Большинство файлов в проектах «шагает» по следующему циклу: «изменён» → «добавлен в список на коммит» → «закоммичен» → «изменён» → и так далее.
+
+```mermaid
+graph LR
+untracked[Untracked<br>]
+staged[Staged<br>]
+modified[Modified<br>]
+tracked[Tracked/Committed<br>]
+
+untracked -- "git add" --> staged
+staged -- "git commit" --> tracked
+tracked -- "файл изменён" --> modified
+modified -- "git add" --> staged
+staged -- "файл изменён<br>(в рабочей директории)" --> modified
+```
 
 ## Как читать git status
 ``` 
